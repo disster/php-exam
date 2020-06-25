@@ -37,6 +37,6 @@
 <main>
     <?php echo $content; ?>
 </main>
-<footer>&copy; 2020, Толпаров Пётр</footer>
+<footer>&copy; 2020, Толпаров Пётр, группа 191-321</footer>
 </body>
 </html>

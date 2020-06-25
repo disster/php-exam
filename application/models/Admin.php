@@ -10,11 +10,13 @@ class Admin extends Model
 
     public function checkLoginData($login, $password)
     {
-        if ($login != 'admin' && $password != '12345') {
+        if ($login == 'admin' && $password == '12345') {
+            return true;
+        } else{
             $this->error = 'Неверный логин или пароль';
             return false;
         }
-        return true;
+
     }
 
     public function login($login)
