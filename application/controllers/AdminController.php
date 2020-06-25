@@ -35,6 +35,7 @@ class AdminController extends Controller
         $this->model->logout();
         $this->view->redirect('admin/login');
     }
+
     public function addAction()
     {
         $vars = [
@@ -47,5 +48,29 @@ class AdminController extends Controller
             }
         }
         $this->view->render('Добавить опрос', $vars);
+    }
+
+    public function deleteAction()
+    {
+        if (!$this->model->isSessionExist($this->route['id'])) {
+            $this->view->errorCode(404);
+        }
+        $this->model->sessionDelete($this->route['id']);
+        $this->view->redirect('admin/dashboard');
+    }
+
+    public function editAction()
+    {
+        if (!$this->model->isSessionExist($this->route['id'])) {
+            $this->view->errorCode(404);
+        }
+        if (!empty($_POST)) {
+            $this->model->sessionEdit($this->route['id'], $_POST);
+            $this->view->redirect('admin/edit/'.$this->route['id']);
+        }
+        $vars = [
+            'data' => $this->model->getSessionData($this->route['id']),
+        ];
+        $this->view->render('Редактировать вопрос', $vars);
     }
 }

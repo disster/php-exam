@@ -120,7 +120,7 @@ footer {
     margin-top: 25px;
 }
 
-.form__item input {
+.form__item input, select {
     width: 60%;
     border: 1px solid var(--main-dark);
     border-radius: 3px;

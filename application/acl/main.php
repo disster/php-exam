@@ -6,7 +6,9 @@ return [
         'session'
     ],
     'authorize' => [],
-    'guest' => [],
+    'guest' => [
+        'login'
+    ],
     'admin' => [
     ],
 ];

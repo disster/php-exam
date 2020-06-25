@@ -2,13 +2,16 @@
 
 return [
 	'all' => [
-		'login',
-	],
+        'login'
+    ],
 	'authorize' => [],
-	'guest' => [],
+	'guest' => [
+    ],
 	'admin' => [
 		'dashboard',
         'logout',
-        'add'
+        'add',
+        'delete',
+        'edit'
 	],
 ];

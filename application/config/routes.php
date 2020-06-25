@@ -27,8 +27,17 @@ return [
         'controller' => 'admin',
         'action' => 'add',
     ],
+    'admin/delete/{id:\d+}' => [
+        'controller' => 'admin',
+        'action' => 'delete',
+    ],
+    'admin/edit/{id:\d+}' => [
+        'controller' => 'admin',
+        'action' => 'edit',
+    ],
     'session/{token:\w+}' => [
         'controller' => 'main',
         'action' => 'session',
     ],
+
 ];

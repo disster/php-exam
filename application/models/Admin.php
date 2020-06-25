@@ -57,4 +57,38 @@ class Admin extends Model
         ];
         $this->db->query('INSERT INTO sessions(name, status, token) VALUES (:name, :status, :token)', $params);
     }
+    public function isSessionExist($id)
+    {
+        $params = [
+            'id' => $id,
+        ];
+        if ($this->db->queryColumn('SELECT id FROM sessions WHERE id = :id', $params)) {
+            return true;
+        } else return false;
+    }
+
+    public function sessionDelete($id)
+    {
+        $params = [
+            'id' => $id,
+        ];
+        $this->db->query('DELETE FROM sessions WHERE id = :id', $params);
+
+    }
+    function getSessionData($id){
+        $params = [
+            'id'=> $id,
+        ];
+        $data = $this->db->queryAll('SELECT * FROM sessions WHERE id = :id', $params);
+        return $data[0];
+    }
+    public function sessionEdit($id, $post){
+            $params = [
+                'type' => $post['type'],
+                'text' => $post['text'],
+                'session_id' => $id,
+            ];
+            echo 111;
+            $this->db->query('INSERT INTO questions(type, text, session_id) VALUES (:type, :text, :session_id)', $params);
+    }
 }
