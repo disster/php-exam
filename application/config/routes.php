@@ -7,7 +7,7 @@ return [
     'admin/dashboard' => [
         'controller' => 'admin',
         'action' => 'dashboard',
-    ],'admin/dashboard/{page:\d+}' => [
+    ], 'admin/dashboard/{page:\d+}' => [
         'controller' => 'admin',
         'action' => 'dashboard',
     ],
@@ -34,6 +34,14 @@ return [
     'admin/edit/{id:\d+}' => [
         'controller' => 'admin',
         'action' => 'edit',
+    ],
+    'admin/remove/{id:\d+}' => [
+        'controller' => 'admin',
+        'action' => 'remove',
+    ],
+    'admin/close/{id:\d+}' => [
+        'controller' => 'admin',
+        'action' => 'close',
     ],
     'session/{token:\w+}' => [
         'controller' => 'main',

@@ -1,7 +1,7 @@
 <div class="container">
     <h1 class="title"><?php echo $title ?></h1>
     <?php if (empty($list)) : ?>
-        <p>Список аккаунтов пуст</p>
+        <p>Список сессий пуст</p>
     <?php else : ?>
         <table class="accounts_table">
             <tr>
@@ -11,6 +11,7 @@
                 <th>Ссылка</th>
                 <th>Редактировать</th>
                 <th>Закрыть сессию</th>
+                <th>Удалить</th>
             </tr>
             <?php foreach ($list as $val) : ?>
                 <tr>
@@ -19,7 +20,10 @@
                         <?php echo htmlspecialchars($val['name'], ENT_QUOTES); ?>
                     </td>
                     <td>
-                        <?php echo htmlspecialchars($val['status'], ENT_QUOTES); ?>
+
+                        <?php if (htmlspecialchars($val['status'], ENT_QUOTES) == 0) {
+                            echo "Закрыта";
+                        } else echo "Открыта" ?>
                     </td>
                     <td>
                         <button class="button table_button edit_button copy"
@@ -31,7 +35,15 @@
                         <a href="/admin/edit/<?php echo $val['id']; ?>"
                            class="">
                             <button class="button table_button edit_button">
-                                Изменить
+                                Редактировать
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/admin/close/<?php echo $val['id']; ?>"
+                           class="">
+                            <button class="button table_button edit_button">
+                                Закрыть
                             </button>
                         </a>
                     </td>

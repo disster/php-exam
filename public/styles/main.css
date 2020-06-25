@@ -219,9 +219,64 @@ footer {
 .page-item:last-child {
     border-right: 1px solid #ccc;
 }
-.page-link{
+
+.page-link {
     width: 100%;
     height: 100%;
     display: block;
     text-align: center;
+}
+
+.question_info {
+    border-radius: 10px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+    transition: box-shadow .2s linear;
+    width: 60%;
+    margin: 20px auto;
+    padding: 20px 20px 60px 20px;
+    font-size: 20px;
+    color: var(--main-dark);
+    position: relative;
+
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.question_info:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4)
+}
+
+.question_info div, .question_info p {
+    margin-top: 10px;
+}
+
+.delete_question {
+    position: absolute;
+    right: 20px;
+    height: 40px;
+    width: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.session_info {
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+    transition: box-shadow .2s linear;
+    padding: 20px;
+}
+
+.session_info__title {
+    text-align: center;
+    font-size: 20px;
+    margin: 20px;
+
+}
+
+.session_info:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4)
 }

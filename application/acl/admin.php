@@ -12,6 +12,8 @@ return [
         'logout',
         'add',
         'delete',
-        'edit'
+        'remove',
+        'edit',
+        'close',
 	],
 ];

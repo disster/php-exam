@@ -52,11 +52,12 @@ class Admin extends Model
     {
         $params = [
             'name' => $name,
-            'status' => 0,
-            'token' =>$this->createToken(),
+            'status' => 1,
+            'token' => $this->createToken(),
         ];
         $this->db->query('INSERT INTO sessions(name, status, token) VALUES (:name, :status, :token)', $params);
     }
+
     public function isSessionExist($id)
     {
         $params = [
@@ -73,22 +74,52 @@ class Admin extends Model
             'id' => $id,
         ];
         $this->db->query('DELETE FROM sessions WHERE id = :id', $params);
+    }
 
-    }
-    function getSessionData($id){
+    function getSessionData($id)
+    {
         $params = [
-            'id'=> $id,
+            'id' => $id,
         ];
-        $data = $this->db->queryAll('SELECT * FROM sessions WHERE id = :id', $params);
-        return $data[0];
+        $data = $this->db->queryAll('SELECT * FROM sessions WHERE id = :id', $params)[0];
+        $questions = $this->db->queryAll('SELECT * FROM questions WHERE session_id = :id', $params);
+        $data['questions'] = $questions;
+        return $data;
     }
-    public function sessionEdit($id, $post){
-            $params = [
-                'type' => $post['type'],
-                'text' => $post['text'],
-                'session_id' => $id,
-            ];
-            echo 111;
-            $this->db->query('INSERT INTO questions(type, text, session_id) VALUES (:type, :text, :session_id)', $params);
+
+    public function sessionEdit($id, $post)
+    {
+        $params = [
+            'type' => $post['type'],
+            'text' => $post['text'],
+            'session_id' => $id,
+        ];
+        $this->db->query('INSERT INTO questions(type, text, session_id) VALUES (:type, :text, :session_id)', $params);
     }
+
+    public function isQuestionExist($id)
+    {
+        $params = [
+            'question_id' => $id,
+        ];
+        if ($this->db->queryColumn('SELECT question_id FROM questions WHERE question_id = :question_id', $params)) {
+            return true;
+        } else return false;
+    }
+
+    public function removeQuestion($id)
+    {
+        $params = [
+            'question_id' => $id,
+        ];
+        $this->db->query('DELETE FROM questions WHERE question_id = :question_id', $params);
+    }
+    public function sessionClose($id)
+    {
+        $params = [
+            'id' => $id,
+        ];
+        $this->db->query('UPDATE sessions SET status = 0 WHERE id = :id', $params);
+    }
+
 }

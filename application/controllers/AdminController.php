@@ -47,16 +47,18 @@ class AdminController extends Controller
                 $this->view->location('admin/dashboard');
             }
         }
-        $this->view->render('Добавить опрос', $vars);
+        $this->view->render('Создать сессию', $vars);
     }
 
-    public function deleteAction()
+    public function removeAction()
     {
-        if (!$this->model->isSessionExist($this->route['id'])) {
+        if (!$this->model->isQuestionExist($this->route['id'])) {
             $this->view->errorCode(404);
         }
-        $this->model->sessionDelete($this->route['id']);
-        $this->view->redirect('admin/dashboard');
+        $this->model->removeQuestion($this->route['id']);
+
+        $this->view->redirect('admin/edit/'.$_SESSION['sessionId']);
+
     }
 
     public function editAction()
@@ -66,11 +68,28 @@ class AdminController extends Controller
         }
         if (!empty($_POST)) {
             $this->model->sessionEdit($this->route['id'], $_POST);
-            $this->view->redirect('admin/edit/'.$this->route['id']);
+            $this->view->location('admin/edit/' . $this->route['id']);
         }
         $vars = [
             'data' => $this->model->getSessionData($this->route['id']),
         ];
-        $this->view->render('Редактировать вопрос', $vars);
+        $this->view->render('Редактировать сессию', $vars);
     }
+    public function deleteAction()
+    {
+        if (!$this->model->isSessionExist($this->route['id'])) {
+            $this->view->errorCode(404);
+        }
+        $this->model->sessionDelete($this->route['id']);
+        $this->view->redirect('admin/dashboard');
+    }
+    public function closeAction()
+    {
+        if (!$this->model->isSessionExist($this->route['id'])) {
+            $this->view->errorCode(404);
+        }
+        $this->model->sessionClose($this->route['id']);
+        $this->view->redirect('admin/dashboard');
+    }
+
 }
