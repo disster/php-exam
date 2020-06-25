@@ -19,15 +19,19 @@ class AdminController extends Controller
 
     public function loginAction()
     {
-        if (!empty($_POST)) {
-            if ($this->model->checkLoginData($_POST['login'], $_POST['password'])) {
-                $this->model->login($_POST['login']);
-                $this->view->location('admin/dashboard');
-            } else {
-                $this->view->message('Ошибка', $this->model->error);
+        if (!isset($_SESSION['admin'])) {
+            if (!empty($_POST)) {
+                if ($this->model->checkLoginData($_POST['login'], $_POST['password'])) {
+                    $this->model->login($_POST['login']);
+                    $this->view->location('admin/dashboard');
+                } else {
+                    $this->view->message('Ошибка', $this->model->error);
+                }
             }
-        }
-        $this->view->render('Вход для администратора');
+            $this->view->render('Вход для администратора');
+        } else {
+            $this->view->errorCode(403);
+        };
     }
 
     public function logoutAction()
@@ -57,7 +61,7 @@ class AdminController extends Controller
         }
         $this->model->removeQuestion($this->route['id']);
 
-        $this->view->redirect('admin/edit/'.$_SESSION['sessionId']);
+        $this->view->redirect('admin/edit/' . $_SESSION['sessionId']);
 
     }
 
@@ -75,6 +79,7 @@ class AdminController extends Controller
         ];
         $this->view->render('Редактировать сессию', $vars);
     }
+
     public function deleteAction()
     {
         if (!$this->model->isSessionExist($this->route['id'])) {
@@ -83,6 +88,7 @@ class AdminController extends Controller
         $this->model->sessionDelete($this->route['id']);
         $this->view->redirect('admin/dashboard');
     }
+
     public function closeAction()
     {
         if (!$this->model->isSessionExist($this->route['id'])) {
@@ -91,6 +97,7 @@ class AdminController extends Controller
         $this->model->sessionClose($this->route['id']);
         $this->view->redirect('admin/dashboard');
     }
+
     public function openAction()
     {
         if (!$this->model->isSessionExist($this->route['id'])) {

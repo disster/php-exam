@@ -6,6 +6,7 @@ return [
     ],
 	'authorize' => [],
 	'guest' => [
+        'login'
     ],
 	'admin' => [
 		'dashboard',
