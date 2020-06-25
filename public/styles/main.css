@@ -142,7 +142,7 @@ footer {
 }
 
 .accounts_table {
-    width: 80%;
+    width: 100%;
     margin: 40px auto;
     text-align: center;
     border-collapse: collapse;
@@ -154,15 +154,15 @@ footer {
     border-top: 0;
 }
 
-.accounts_table e th {
+.accounts_table th {
     border-bottom: 1px solid #D2D2D2;
     border-right: 1px solid #D2D2D2;
-    padding: 20px 0;
+    padding: 10px 0;
 }
 
 .accounts_table td {
     border: 1px solid #D2D2D2;
-    padding: 20px 50px;
+    padding: 10px;
     text-align: center;
     color: var(--main-dark);
 }
@@ -197,11 +197,14 @@ footer {
 }
 
 .page-item {
-    padding: 15px;
     border: 1px solid #ccc;
     border-right: none;
     color: var(--main-dark);
     text-align: center;
+    min-width: 40px;
+    min-height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
 
 }
 
@@ -209,9 +212,16 @@ footer {
     background-color: #007BFF;
     border: 1px solid #007BFF;
     color: #fff;
+
 }
 
 
 .page-item:last-child {
     border-right: 1px solid #ccc;
+}
+.page-link{
+    width: 100%;
+    height: 100%;
+    display: block;
+    text-align: center;
 }

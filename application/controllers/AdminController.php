@@ -40,6 +40,12 @@ class AdminController extends Controller
         $vars = [
             'id' => $this->model->sessionsCount()
         ];
+        if (!empty($_POST)) {
+            {
+                $this->model->addSession($_POST['name']);
+                $this->view->location('admin/dashboard');
+            }
+        }
         $this->view->render('Добавить опрос', $vars);
     }
 }

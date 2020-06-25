@@ -21,7 +21,7 @@
                     <a href="/admin/dashboard" class="link">В панель администратора</a>
                 </li>
                 <li class="nav__item">
-                    <a href="/admin/add" class="link">Добавить опрос</a>
+                    <a href="/admin/add" class="link">Создать сессию</a>
                 </li>
                 <li class="nav__item">
                     <a href="/admin/logout" class="link">Выход</a>

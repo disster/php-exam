@@ -22,7 +22,10 @@
                         <?php echo htmlspecialchars($val['status'], ENT_QUOTES); ?>
                     </td>
                     <td>
-                        <?php echo htmlspecialchars($val['token'], ENT_QUOTES); ?>
+                        <button class="button table_button edit_button copy"
+                                value="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/session/' . htmlspecialchars($val['token'], ENT_QUOTES); ?>">
+                            Копировать ссылку
+                        </button>
                     </td>
                     <td>
                         <a href="/admin/edit/<?php echo $val['id']; ?>"
@@ -48,3 +51,19 @@
         </div>
     <?php endif; ?>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.copy').click(
+            function () {
+                let tmp = document.createElement('INPUT'),
+                    focus = document.activeElement;
+                tmp.value = $(this).val();
+                document.body.appendChild(tmp);
+                tmp.select();
+                document.execCommand('copy');
+                document.body.removeChild(tmp);
+                alert('Ссылка скопирована в буфер обмена');
+            }
+        )
+    });
+</script>

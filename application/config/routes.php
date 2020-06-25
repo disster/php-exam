@@ -7,6 +7,9 @@ return [
     'admin/dashboard' => [
         'controller' => 'admin',
         'action' => 'dashboard',
+    ],'admin/dashboard/{page:\d+}' => [
+        'controller' => 'admin',
+        'action' => 'dashboard',
     ],
     'admin/login' => [
         'controller' => 'admin',
@@ -16,7 +19,7 @@ return [
         'controller' => 'admin',
         'action' => 'logout',
     ],
-    'admin/add/' => [
+    'admin/add' => [
         'controller' => 'admin',
         'action' => 'add',
     ],
@@ -24,6 +27,8 @@ return [
         'controller' => 'admin',
         'action' => 'add',
     ],
-
-
+    'session/{token:\w+}' => [
+        'controller' => 'main',
+        'action' => 'session',
+    ],
 ];

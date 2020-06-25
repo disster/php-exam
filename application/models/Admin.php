@@ -48,5 +48,13 @@ class Admin extends Model
         return substr(str_shuffle(str_repeat('0123456789abcdefghijklmnopqrstuvwxyz', 30)), 0, 30);
     }
 
-
+    public function addSession($name)
+    {
+        $params = [
+            'name' => $name,
+            'status' => 0,
+            'token' =>$this->createToken(),
+        ];
+        $this->db->query('INSERT INTO sessions(name, status, token) VALUES (:name, :status, :token)', $params);
+    }
 }
