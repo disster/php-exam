@@ -40,12 +40,21 @@
                         </a>
                     </td>
                     <td>
+                        <?php if($val['status'] == 0):?>
+                        <a href="/admin/open/<?php echo $val['id']; ?>"
+                           class="">
+                            <button class="button table_button edit_button">
+                                Открыть
+                            </button>
+                        </a>
+                        <?php else:?>
                         <a href="/admin/close/<?php echo $val['id']; ?>"
                            class="">
                             <button class="button table_button edit_button">
                                 Закрыть
                             </button>
                         </a>
+                        <?php endif;?>
                     </td>
                     <td>
                         <a href="/admin/delete/<?php echo $val['id']; ?>"

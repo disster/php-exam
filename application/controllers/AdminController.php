@@ -91,5 +91,12 @@ class AdminController extends Controller
         $this->model->sessionClose($this->route['id']);
         $this->view->redirect('admin/dashboard');
     }
-
+    public function openAction()
+    {
+        if (!$this->model->isSessionExist($this->route['id'])) {
+            $this->view->errorCode(404);
+        }
+        $this->model->sessionOpen($this->route['id']);
+        $this->view->redirect('admin/dashboard');
+    }
 }

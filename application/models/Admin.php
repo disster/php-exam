@@ -121,5 +121,12 @@ class Admin extends Model
         ];
         $this->db->query('UPDATE sessions SET status = 0 WHERE id = :id', $params);
     }
+    public function sessionOpen($id)
+    {
+        $params = [
+            'id' => $id,
+        ];
+        $this->db->query('UPDATE sessions SET status = 1 WHERE id = :id', $params);
+    }
 
 }

@@ -15,5 +15,6 @@ return [
         'remove',
         'edit',
         'close',
+        'open'
 	],
 ];

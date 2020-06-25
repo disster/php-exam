@@ -43,6 +43,10 @@ return [
         'controller' => 'admin',
         'action' => 'close',
     ],
+    'admin/open/{id:\d+}' => [
+        'controller' => 'admin',
+        'action' => 'open',
+    ],
     'session/{token:\w+}' => [
         'controller' => 'main',
         'action' => 'session',
